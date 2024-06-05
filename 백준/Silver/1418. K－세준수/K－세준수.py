@@ -10,7 +10,7 @@ for i in range(2,int(k**0.5)+1):
     
 for i in range(1,n+1):
     num = i
-    index = 2
+    index = 1
     while index < len(prime_numb):
         if prime_numb[index]:
             if num % index == 0:
@@ -24,7 +24,4 @@ for i in range(1,n+1):
             cnt += 1
             break
 
-if cnt == 0:
-    print(1)
-else:
-    print(cnt)
+print(cnt)
