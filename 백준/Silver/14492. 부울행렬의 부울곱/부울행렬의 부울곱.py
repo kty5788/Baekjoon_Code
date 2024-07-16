@@ -1,22 +1,13 @@
-n = int(input())
-l1 = []
-l2 = []
-for i in range(n):
-    l1.append(list(map(int,input().split())))
+N = int(input())
+A = [input().split() for _ in range(N)]
+B = [input().split() for _ in range(N)]
 
-for i in range(n):
-    l2.append(list(map(int,input().split())))
-
-just = []
+AA = [int(''.join(a), 2) for a in A]
+BB = [int(''.join(B[r][c] for r in range(N)), 2) for c in range(N)]
 cnt = 0
-for i in range(n):
-    for j in range(n):
-        for k in range(n):
-            if l1[i][k] == l2[k][j]:
-                just.append(l1[i][k])
-            else:
-                just.append(0)
-        if sum(just) != 0:
+
+for Ai in AA:
+    for Bi in BB:
+        if Ai & Bi:
             cnt += 1
-        just.clear()
 print(cnt)
