@@ -1,4 +1,7 @@
+import sys
 from collections import deque
+input = sys.stdin.readline
+
 n,k = map(int,input().split())
 visited = [False] * 100001
 
@@ -10,21 +13,13 @@ def bfs():
     while q:
         dot,sec = q.popleft()
 
-        if dot == k:
+        if dot == k: # 위치가 같다면 리턴
             return sec
-        else:
-            if dot+1 <= 100000:
-                if visited[dot+1] == False:
-                    q.append([dot+1, sec+1])
-                    visited[dot+1] = True
-            if dot-1 >= 0:
-                if visited[dot-1] == False:
-                    q.append([dot-1, sec+1])
-                    visited[dot-1] = True
-            if 2*dot <= 100000:
-                if visited[2*dot] == False:
-                    q.append([2*dot, sec+1])
-                    visited[2*dot] = True
+        else: # 아닐 경우
+            for i in [dot+1, dot-1, 2*dot]:
+                if 0 <= i <= 100000 and not visited[i]:
+                    q.append([i,sec+1])
+                    visited[i] = True
 
-a = bfs()
-print(a)
+ans = bfs()
+print(ans)
